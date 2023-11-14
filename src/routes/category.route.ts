@@ -1,9 +1,9 @@
-import express from "express";
-import { asyncHandler } from "@/helpers";
-import { CategoryController } from "@/controllers/category.controller";
+import express from 'express'
+import { asyncHandler } from '@/helpers'
+import { CategoryController } from '@/controllers/category.controller'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/", asyncHandler(CategoryController.findAllCategories));
+router.get('/', asyncHandler(CategoryController.findAllCategories))
 
-export { router as CategoryRoute };
+export { router as CategoryRoute }
