@@ -1,91 +1,136 @@
-# Tiki Clone Backend
-
-## Docker command: 
- - Build image: docker build -t tiki-clone-backend:latest .
- - Run image: docker run --name tiki-clone-backend -td -p 8080:8080 tiki-clone-backend:latest
+# Market Place API
 
 ### Build RESTful API for FE application
 
-- Authentication
-  - Login [Public]
-  - SignUp [Public]
-  - Logout [User]
-  - Tokens [User]
-  
-- Password Management
-  - Change Password [User]
-  - Forgot Password [Public]
-  - Reset Password [Public]
-  
-- Email Management
-  - Send Email Verification [User]
-  
-- User
-  - Create New User [Admin]
-  - Get All Users [Public]
-  - Get User Data Using It's ID [Public]
-  - Update User Details Using It's ID [User]
-  - Update User Profile Image Using It's ID [User]
-  - Delete My Account [User]
-  - Delete User Using It's ID [Admin]
-
-- Cart Services
-  - Add Product To Cart [User]
-  - Reduce Product Quantity By One [User]
-  - Increase Product Quantity By One [User]
-  - Get Cart [User]
-  - Delete Cart Item [User]
-  - Delete Cart [User]
-
-- Review Services
-  - Create New Review [User]
-  - Query All Reviews [Public]
-  - Query Review Using It's ID [Public]
-  - Update Review Using It's ID [User]
-  - Delete Review Using It's ID [User]
-
 - Product Services
-  - Query products [Public]
-  - Query Product Using It's ID [Public]
-  - Create new product [Seller]
-  - Update Product Details [Seller]
-  - Update Product Main Image [Seller]
-  - Update Product Images [Seller]
-  - Delete Product Using It's ID [User]
-  - Get Products Statics [Admin]
-  - Top 5 Cheapeast Products [Public]
-  - Add Product Color [Seller]
-  - Add Product Size [Seller]
-  - Delete Product Color [Seller]
-  - Delete Product Size [Seller]
+  - Query products [Public]:
+    + End point: /v1/api/products
+    + Method: GET
+    + Request:
+      ```js
+      {
+        page: 1,
+        limit: 10,
+        search: '',
+        price_min: 0,
+        price_max: 200,
+        category: '6552fb59596f5fca3cd8f1c7',
+        sort_by: 'product_name',
+        order: 'asc'
+      }
+      ```
+    + Response:
+      ```js
+      {
+        message: 'Get list product success!',
+        status: 'OK',
+        code: 200,
+        metadata: {
+          items: [
+            {
+              _id: '65535014f8dad3e767f61737',
+              product_name: 'Ashe',
+              product_thumb:
+                'https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt5388dc09a75213a1/60ee0b7912cadb2032d63aa7/Classic_Ashe_Splash.jpg',
+              product_description: 'Desc 29',
+              product_price: 111,
+              product_quantity: 22,
+              product_category: {
+                _id: '6552fb59596f5fca3cd8f1c7',
+                category_name: 'Accessory'
+              }
+            },
+            {
+              _id: '65533333f8dad3e767f616ef',
+              product_name: 'Lucian',
+              product_thumb:
+                'https://images.contentstack.io/v3/assets/blt187521ff0727be24/bltd0d3d68533866389/60ee0f38e31ac858d22f9c61/Lucian_0.jpg',
+              product_description: 'Desc 28',
+              product_price: 244,
+              product_quantity: 32,
+              product_category: {
+                _id: '6552fb59596f5fca3cd8f1c7',
+                category_name: 'Accessory'
+              }
+            },
+            {
+              _id: '65533313f8dad3e767f616ed',
+              product_name: 'Leona',
+              product_thumb:
+                'https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt6a3490eb186aa2d8/60ee0f2325b09b4bfcbdf553/Leona_0.jpg',
+              product_description: 'Desc 27',
+              product_price: 163,
+              product_quantity: 33,
+              product_category: {
+                _id: '6552fb44596f5fca3cd8f1c6',
+                category_name: 'Shoes'
+              }
+            }
+          ],
+          pagination: {
+            page: 1,
+            limit: 3,
+            totalRows: 27
+          }
+        }
+      }
+      ```
+  - Create new product [User]
 
-- Favorite Services
-  - Get Favorite Products List [User]
-  - Add Product to Favorite List [User]
-  - Delete Product From Favorite List [User]
-  - Check If Product In Favorite List [User]
-  
-- Discount Services
-  - Generate Discount Code [Admin]
-  - Get Dicount Amount [User]
-  - Get All Discount Codes [Admin]
-  - Verify Discount Code [User]
-  - Delete Discount Code [Admin]
-  - Cancel Discount Code [User]
-  
-- Order Services
-  - Create New Order [User]
-  - Query Orders [User]
-  - Query Order Using It's ID [User]
-  - Cancel Order [User]
-  - Update Order Status [Admin]
-  
 - Category Services
   - Create New Category [User]
   - Query Categories [Public]
-  - Query Category Using It's ID [Public]
-  - Update Category Details [Admin]
-  - Update Category Image [Admin]
-  - Delete Category [Admin]
+     + End point: /v1/api/categories
+     + Method: GET
+     + Request:
+     + Response:
+       ```js
+       {
+         message: 'Get list category success!',
+         status: 'OK',
+         code: 200,
+         metadata: [
+           {
+             _id: '6552f9ef596f5fca3cd8f1be',
+             category_name: 'Upper Body'
+           },
+           {
+             _id: '6552fafd596f5fca3cd8f1c3',
+             category_name: 'Lower Body'
+           },
+           {
+             _id: '6552fb29596f5fca3cd8f1c5',
+             category_name: 'Hat'
+           },
+           {
+             _id: '6552fb44596f5fca3cd8f1c6',
+             category_name: 'Shoes'
+           },
+           {
+             _id: '6552fb59596f5fca3cd8f1c7',
+             category_name: 'Accessory'
+           },
+           {
+             _id: '6552fb83596f5fca3cd8f1c8',
+             category_name: 'Legendary'
+           },
+           {
+             _id: '6552fb91596f5fca3cd8f1c9',
+             category_name: 'Mythic'
+           },
+           {
+             _id: '6552fba1596f5fca3cd8f1ca',
+             category_name: 'Epic'
+           },
+           {
+             _id: '6552fbb1596f5fca3cd8f1cb',
+             category_name: 'Rare'
+           },
+           {
+             _id: '65530f2841dd48da8a601588',
+             category_name: 'Common'
+           }
+         ]
+       }
+       ```
   
-Multi-Language Support
