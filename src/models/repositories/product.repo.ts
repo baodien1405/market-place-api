@@ -21,11 +21,7 @@ const findAllProducts = async ({
   const condition: any = {}
 
   if (category) {
-    if (category === 'all') {
-      delete condition.product_category
-    } else {
-      condition.product_category = category
-    }
+    condition.product_category = category
   }
 
   if (price_max) {
