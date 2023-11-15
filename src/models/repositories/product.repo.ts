@@ -18,10 +18,12 @@ const findAllProducts = async ({
   limit = Number(limit)
   const skip = (page - 1) * limit
 
-  let condition: any = {}
+  const condition: any = {}
 
   if (category) {
-    condition.product_category = category
+    if (category !== 'all') {
+      condition.product_category = category
+    }
   }
 
   if (price_max) {
