@@ -21,7 +21,9 @@ const findAllProducts = async ({
   const condition: any = {}
 
   if (category) {
-    if (category !== 'all') {
+    if (category === 'all') {
+      delete condition.product_category
+    } else {
       condition.product_category = category
     }
   }
